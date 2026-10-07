@@ -1,0 +1,45 @@
+{
+  "skill_name": "vertex-run-insights",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "how much did the customer-representation-oss-finetuned pipeline's last completed run cost? which task was the biggest cost driver?",
+      "expected_output": "A per-task cost breakdown for the most recent SUCCEEDED run (run id customer-representation-oss-finetuned-20261006023020) with the total, and load-and-save-data identified as the top cost driver at ~$4.55.",
+      "files": [],
+      "expectations": [
+        "Uses the vertex-run-insights script (vertex_runs.sh) rather than hand-rolling Vertex/Monitoring API calls",
+        "Reports the run id customer-representation-oss-finetuned-20261006023020 (the latest SUCCEEDED run, not the still-RUNNING 20261007 run)",
+        "Reports a total cost of approximately $8.44 USD (sum of the seven task costs)",
+        "Identifies load-and-save-data as the most expensive task at approximately $4.55",
+        "Shows per-task COST_USD figures rather than only a single aggregate number"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "for the customer-representation-oss-finetuned run on 2026-10-06, which task used the most RAM, and what machine type was it running on?",
+      "expected_output": "load-and-save-data identified as the highest-RAM task at 31.43% peak (75.44 GiB) on an n1-standard-64 machine.",
+      "files": [],
+      "expectations": [
+        "Uses the vertex-run-insights script (vertex_runs.sh) rather than hand-rolling API calls",
+        "Identifies load-and-save-data as the task with the highest RAM usage",
+        "Reports the RAM peak as approximately 75.44 GiB (or 31.43% of allocated memory)",
+        "Reports the machine type as n1-standard-64",
+        "Cites concrete numbers from the run rather than describing the process abstractly"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I suspect the customer-representation-oss-finetuned pipeline is wasting money on over-provisioned machines. Look at the last completed run and tell me which tasks look over-provisioned and where we could right-size. Save nothing to disk if you can avoid it.",
+      "expected_output": "An analysis of CPU/RAM peaks vs allocated machine capacity for each task, flagging load-and-save-data (1.05% CPU, 31% RAM on n1-standard-64) and batch-job (0.37% CPU on e2-standard-4) as over-provisioned, with concrete smaller-machine suggestions.",
+      "files": [],
+      "expectations": [
+        "Uses the vertex-run-insights script (vertex_runs.sh) rather than hand-rolling API calls",
+        "Compares each task's CPU(vCPU) and RAM(GiB) peaks against the machine's vCPU and RAM_GiB capacity",
+        "Flags load-and-save-data as over-provisioned (very low CPU peak ~1% on a 64-vCPU machine)",
+        "Flags batch-job as a right-sizing candidate (CPU peak ~0.37% of an e2-standard-4)",
+        "Does not write to the .vertex-history store (honours the user's request not to save)",
+        "Gives at least one concrete smaller-machine suggestion or expected saving"
+      ]
+    }
+  ]
+}

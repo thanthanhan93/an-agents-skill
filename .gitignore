@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# Local skill install state
+skills-lock.json
+.skills.json
+
+# Skill runtime output (e.g. vertex-run-insights local history store)
+.vertex-history/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Editors
+.idea/
+.vscode/
