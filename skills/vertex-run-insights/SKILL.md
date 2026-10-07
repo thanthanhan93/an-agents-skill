@@ -11,24 +11,20 @@ runtime, machine type and an estimated USD cost.
 ## Scope
 
 - Read-only inspection of Vertex AI pipelines in `jet-ml-dev`, `jet-ml-staging` and
-  `jet-ml-prod` (region `europe-west1`).
+  `jet-ml-prod` (region `europe-west1`). The script refuses any other project.
 - Answers questions about runs that have already executed. It does not trigger, retry
-  or modify pipelines.
+  or modify pipelines, and it does not explore the repo's application code - this
+  skill is about the platform's runs, not the source of the pipelines.
 
 ## Guardrails
 
-- **Only the three platform projects are allowed.** The script refuses anything else.
 - **Default env is `prod`, region `europe-west1`.** The script always echoes the
   effective defaults; if a non-default region is used it prints a warning. Pass
   `--env dev|staging` or `--region` only when the user explicitly asks for it.
-- **Do not explore the repo's application code.** This skill is about the platform's
-  runs, not about the source of the pipelines. Everything you need is reachable through
-  the script.
 - **Do not hand-roll API calls.** `scripts/vertex_runs.sh` is the single entry point;
   it already encodes the correct resource types, filters, pricing and store format.
   Only fall back to raw API calls if the script is genuinely missing a capability, and
   read the reference files first if you do.
-- **Never trigger or modify a pipeline** as part of this skill.
 - **Auth failure means stop.** If `gcloud auth print-access-token` fails the script
   exits with a clear message and exit code 2. Tell the user to run `gcloud auth login`
   and retry; do not try to work around it.
@@ -126,5 +122,4 @@ script's internals, or refresh prices - the normal workflow does not require the
 ## Requirements
 
 - `bash`, `curl`, `jq`.
-- `gcloud` authenticated with access to the three ML projects. If auth is missing or
-  expired the script tells the user to run `gcloud auth login` and stops.
+- `gcloud` authenticated with access to the three ML projects.
