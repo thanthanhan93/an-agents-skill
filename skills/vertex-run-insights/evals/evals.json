@@ -9,7 +9,7 @@
       "expectations": [
         "Uses the vertex-run-insights script (vertex_runs.sh) rather than hand-rolling Vertex/Monitoring API calls",
         "Reports the run id customer-representation-oss-finetuned-20261006023020 (the latest SUCCEEDED run, not the still-RUNNING 20261007 run)",
-        "Reports a total cost of approximately $8.44 USD (sum of the seven task costs)",
+        "Reports a total cost of approximately $8.43 USD (sum of the seven task costs)",
         "Identifies load-and-save-data as the most expensive task at approximately $4.55",
         "Shows per-task COST_USD figures rather than only a single aggregate number"
       ]
