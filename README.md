@@ -6,6 +6,7 @@ A collection of my personal [Agent Skills](https://skills.sh) - reusable instruc
 
 | Skill | Description |
 | --- | --- |
+| [`mermaid-tool`](skills/mermaid-tool/SKILL.md) | Create, revise, or troubleshoot Mermaid flowcharts, especially data-lineage and checkpoint/fault-tolerance diagrams copied into Miro. |
 | [`vertex-run-insights`](skills/vertex-run-insights/SKILL.md) | Inspect Vertex AI pipeline runs in JET's ML platform (jet-ml-dev / jet-ml-staging / jet-ml-prod, europe-west1) and report per-task CPU and RAM peaks, runtimes, machine types and USD cost. |
 
 ## Install

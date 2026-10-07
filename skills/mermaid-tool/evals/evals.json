@@ -1,0 +1,23 @@
+{
+  "skill_name": "mermaid-tool",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Create a Miro-compatible Mermaid diagram for a checkpointed LLM job. It has fresh and resume paths, input and results checkpoint tables, and only sends unfinished rows to the model.",
+      "expected_output": "A conservative colored flowchart using quoted newline labels, individual edges, database shapes for checkpoint tables, and explicit input-minus-results resume logic.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "My Miro Mermaid chart fails after I added classDef colors, <br/> labels, and chained arrows. Fix it but keep color.",
+      "expected_output": "A Miro-safe chart that removes HTML and class syntax, replaces line breaks with quoted \\n, separates chained edges, and uses per-node style statements.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Create a high-level data lineage graph for product tables, demand tables, prepared LLM input, an LLM process, and Bronze/Silver/Gold serving tables. Show dataset.table and logical grain on artifacts.",
+      "expected_output": "An artifact-centered graph with separate physical source nodes, grain labels for persisted business artifacts, process-only LLM node, and serving table sinks.",
+      "files": []
+    }
+  ]
+}
